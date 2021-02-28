@@ -9,6 +9,7 @@ import java.util.List;
 @Component
 public class UsuarioDTO {
 
+    private Long id;
     private String first_name;
     private String last_name;
     private String career;
@@ -21,6 +22,14 @@ public class UsuarioDTO {
 
     public List<CardsDTO> getCards() {
         return cards;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setFirst_name(String first_name) {
@@ -40,6 +49,7 @@ public class UsuarioDTO {
     }
 
     public UsuarioDTO toDTO(Usuario usuario) {
+        this.id = usuario.getId();
         this.first_name = usuario.getFirst_name();
         this.last_name = usuario.getLast_name();
         this.career = usuario.getCareer();
@@ -62,10 +72,20 @@ public class UsuarioDTO {
     @Override
     public String toString() {
         return "UsuarioDTO{" +
-                "first_name='" + first_name + '\'' +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
-                ", caree='" + career + '\'' +
+                ", career='" + career + '\'' +
                 ", cards=" + cards +
                 '}';
+    }
+
+    public Usuario toEntity() {
+        Usuario usuario = new Usuario();
+        usuario.setCareer(this.career);
+        usuario.setFirstname(this.first_name);
+        usuario.setLastname(this.last_name);
+        usuario.setId(this.id);
+        return usuario;
     }
 }

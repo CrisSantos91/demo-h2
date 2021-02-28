@@ -61,4 +61,8 @@ public class Usuario {
                 ", cards=" + cards +
                 '}';
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.jwt.service;
 
 import com.example.jwt.entity.Usuario;
+import com.example.jwt.model.CardsDTO;
 import com.example.jwt.model.UsuarioDTO;
 import com.example.jwt.repository.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -32,5 +32,10 @@ public class UsuarioService {
         List<UsuarioDTO> list = new ArrayList<>();
         billRepository.findAll().forEach(it-> list.add(new UsuarioDTO().toDTO(it)));
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> createCard(CardsDTO cardsDTO) {
+        billRepository.createCard(cardsDTO.getType(), cardsDTO.getCategory(), cardsDTO.getUserId().toEntity());
+        return new ResponseEntity<String>("Cartão Criado", HttpStatus.CREATED);
     }
 }

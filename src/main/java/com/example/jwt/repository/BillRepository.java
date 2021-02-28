@@ -2,6 +2,7 @@ package com.example.jwt.repository;
 
 import com.example.jwt.entity.Usuario;
 import com.example.jwt.model.CardsDTO;
+import com.example.jwt.model.UsuarioDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -35,5 +36,5 @@ public interface BillRepository extends JpaRepository<Usuario, Long> {
     @Modifying
     @Query(value = " insert into  cards (type, category, user_id) values " +
             "(:type, :category, :userId)", nativeQuery = true )
-    void createCard(@Param("type") String type, @Param("category") String category, @Param("userId") int userId);
+    void createCard(@Param("type") String type, @Param("category") String category, @Param("userId") Usuario userId);
 }

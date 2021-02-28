@@ -1,5 +1,6 @@
 package com.example.jwt.controller;
 
+import com.example.jwt.model.CardsDTO;
 import com.example.jwt.model.UsuarioDTO;
 import com.example.jwt.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,12 @@ public class DemoController {
     @ResponseBody
     public ResponseEntity<String> createUser(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.createUser(usuarioDTO);
+    }
+
+    @PostMapping("/card")
+    @ResponseBody
+    public ResponseEntity<String> createCard(@RequestBody CardsDTO cardsDTO) {
+        return usuarioService.createCard(cardsDTO);
     }
 
 }
